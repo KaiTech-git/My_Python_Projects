@@ -1,0 +1,36 @@
+"""
+Program generate pi to the nth digit.
+Program use BBP formula to calculate selected number of digits.
+"""
+from decimal import Decimal, getcontext
+import ipywidgets as widgets
+
+def pi_generator(m,n):
+    getcontext().prec = n+2
+    n_digit = 0
+    for i in range(n+1):
+        n_digit += Decimal(1)/Decimal(16)**i * (
+            Decimal(4)/Decimal(8*i + 1) -
+            Decimal(2)/Decimal(8*i + 4) -
+            Decimal(1)/Decimal(8*i + 5) -
+            Decimal(1)/Decimal(8*i + 6))
+            
+    return str(n_digit)[m:-1]
+        
+def main():
+    n = 0
+    m = 0
+    PI = 0.0
+    while True:
+        try:
+            n = int(input('Input decimal place of pi:'))
+            if n>=0:
+                break
+            else:
+                print('Try again.')
+        except:
+            print('Try again.')
+    PI = pi_generator(m.value,n.value)
+    print(PI)
+if __name__ == '__main__':
+    main()
