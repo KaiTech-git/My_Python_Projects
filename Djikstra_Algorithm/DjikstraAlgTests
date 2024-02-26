@@ -1,3 +1,7 @@
+"""
+Program testing Djikstra Algorithm based ona same example graph with known shortest paths. 
+"""
+
 import unittest
 from DjikstraAlgorithm import Graph
 
