@@ -51,7 +51,7 @@ def read_lisp(tokens_list:list, length = -1):
             branch_lis.append(read_lisp(tokens_list, length))
         tokens_list.pop(0) # Getting rid of ")"
         
-        if branch_lis == []: # Handling case when Lips expression is empty ex. "()"
+        if branch_lis == ['']: # Handling case when Lips expression is empty ex. "()"
             raise ValueError(f"Operation at position {length - len(tokens_list)} is empty ")
         return branch_lis
     
@@ -65,5 +65,5 @@ def read_lisp(tokens_list:list, length = -1):
             return token
 
 if __name__ == "__main__":
-    program_input =  "(define (add a b) (+ a b))"
+    program_input =  "(if (< x 0)) (* x -1) x)"
     print(read_lisp(lex_token(program_input)))

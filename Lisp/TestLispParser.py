@@ -19,7 +19,25 @@ class ParserTest(unittest.TestCase):
         ]
         
         for program, expec in test_cases:
-            self.assertEqual(read_lisp(lex_token(program)),expec) 
+            self.assertEqual(read_lisp(lex_token(program)),expec)
+            
+    def test_mismatched_parenthesis_empty(self):
+        test_cases = [
+            ("(define (add a b)", SyntaxError),  # Missing closing parenthesis
+            ("(if (< x 0)) (* x -1) x)", SyntaxError),  # Too many closing parenthesis
+            ("(let ((x 5))) (y 10) (+ x y))", SyntaxError),  # Too many closing parenthesis
+            ("(lambda (x) (* x x", SyntaxError),  # Missing closing parenthesis
+            ('(and (= x 5) () (> y 10))', ValueError),
+            ('(if (< x 0) (* x (()) -1) x)', ValueError)
+        ]
+        
+        for program,expec in test_cases:
+            if str(expec) == "<class 'SyntaxError'>":
+                with self.assertRaises(SyntaxError):
+                    read_lisp(lex_token(program)) 
+            else:
+                with self.assertRaises(ValueError):
+                    read_lisp(lex_token(program)) 
             
 if __name__ == '__main__':
     unittest.main()
