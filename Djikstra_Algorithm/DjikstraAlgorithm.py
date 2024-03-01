@@ -1,5 +1,5 @@
 """
-Program looks for the shortest wy through the graph using Dijkstra's Algorithm.
+Program looks for the shortest way through the graph using Dijkstra's Algorithm.
 
 Program is composed of two main elements:
 - Graph class used to store graph in form of dictionary (attribute self.graph). 
