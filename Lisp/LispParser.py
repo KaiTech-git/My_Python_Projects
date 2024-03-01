@@ -56,7 +56,7 @@ def read_lisp(tokens_list:list, length = -1):
         return branch_lis
     
     else: # Assignment of atoms to branch with meaning (number or symbol)
-        if token.isnumeric():
+        if token.lstrip("-").isnumeric():
             try:
                 return int(token)
             except:
@@ -65,5 +65,5 @@ def read_lisp(tokens_list:list, length = -1):
             return token
 
 if __name__ == "__main__":
-    program_input =  "(first (list 1 (+ 2 3) 9))"
+    program_input =  "(define (add a b) (+ a b))"
     print(read_lisp(lex_token(program_input)))
