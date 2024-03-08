@@ -24,10 +24,6 @@ def hanoi_alg_iter(begin:Tower, temp:Tower, end:Tower):
                 if len(end.elements) == tw_hight:
                     break            
               
-                        
-
-    
-        
 if __name__ == "__main__":
         tw_begin = Tower(7)
         tw_temp = Tower(0) 
